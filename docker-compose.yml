@@ -1,0 +1,10 @@
+services:
+  worker:
+    build: ./worker
+    container_name: agent-worker
+    volumes:
+      - ./worker:/app        # 👈 AÑADE ESTO
+      - ./content:/content
+    env_file:
+      - .env
+    restart: unless-stopped
