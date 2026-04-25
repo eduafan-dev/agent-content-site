@@ -19,6 +19,11 @@ const formattedDate = new Date(pubDate).toLocaleDateString('es-ES', {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
   <meta name="description" content={description}>
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2415716527835089"
+       crossorigin="anonymous"></script>
+  
   <style>
     :root {
       --color-bg: #fafafa;
@@ -172,6 +177,18 @@ const formattedDate = new Date(pubDate).toLocaleDateString('es-ES', {
       color: #666;
     }
 
+    .ad-space {
+      margin: 2rem 0;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      border: 1px solid var(--color-border);
+      text-align: center;
+      min-height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     @media (max-width: 640px) {
       h1 {
         font-size: 1.8rem;
@@ -198,9 +215,31 @@ const formattedDate = new Date(pubDate).toLocaleDateString('es-ES', {
     </div>
   </header>
 
+  <!-- AD: Después del header -->
+  <div class="ad-space">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
   <article class="content">
     <slot />
   </article>
+
+  <!-- AD: Después del contenido -->
+  <div class="ad-space">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
 
   {tags && tags.length > 0 && (
     <footer class="tags">
