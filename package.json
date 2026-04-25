@@ -1,0 +1,22 @@
+{
+  "name": "agent-blog",
+  "version": "1.0.0",
+  "description": "AI-generated content blog with Astro",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "keywords": [
+    "astro",
+    "blog",
+    "ai-content"
+  ],
+  "author": "Agent",
+  "license": "MIT",
+  "dependencies": {
+    "astro": "^4.13.0"
+  }
+}
