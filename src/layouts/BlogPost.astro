@@ -1,0 +1,252 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, author, tags, image } = Astro.props;
+
+const formattedDate = new Date(pubDate).toLocaleDateString('es-ES', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2415716527835089"
+       crossorigin="anonymous"></script>
+  
+  <style>
+    :root {
+      --color-bg: #fafafa;
+      --color-text: #1a1a1a;
+      --color-border: #e0e0e0;
+      --color-accent: #0066cc;
+      --font-serif: 'Georgia', serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+    }
+
+    body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      font-family: var(--font-serif);
+    }
+
+    .meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.95rem;
+      color: #666;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .description {
+      font-size: 1.2rem;
+      color: #555;
+      margin: 1rem 0 0 0;
+      font-style: italic;
+    }
+
+    .content {
+      margin: 2rem 0;
+    }
+
+    .content :global(h2) {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem 0;
+      font-family: var(--font-serif);
+    }
+
+    .content :global(h3) {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem 0;
+    }
+
+    .content :global(p) {
+      margin: 1rem 0;
+      text-align: justify;
+    }
+
+    .content :global(ul),
+    .content :global(ol) {
+      margin: 1rem 0 1rem 2rem;
+    }
+
+    .content :global(li) {
+      margin: 0.5rem 0;
+    }
+
+    .content :global(a) {
+      color: var(--color-accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-accent);
+    }
+
+    .content :global(a:hover) {
+      background-color: rgba(0, 102, 204, 0.1);
+    }
+
+    .content :global(code) {
+      background-color: #f0f0f0;
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+
+    .content :global(pre) {
+      background-color: #f5f5f5;
+      padding: 1rem;
+      border-radius: 4px;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    .content :global(pre code) {
+      background: none;
+      padding: 0;
+    }
+
+    .content :global(blockquote) {
+      border-left: 4px solid var(--color-accent);
+      padding-left: 1rem;
+      margin: 1rem 0;
+      color: #666;
+      font-style: italic;
+    }
+
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .tag {
+      display: inline-block;
+      background-color: #f0f0f0;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .ad-space {
+      margin: 2rem 0;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      border: 1px solid var(--color-border);
+      text-align: center;
+      min-height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      body {
+        padding: 1rem;
+      }
+
+      header {
+        margin-bottom: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>{title}</h1>
+    <p class="description">{description}</p>
+    <div class="meta">
+      <span>📅 {formattedDate}</span>
+      <span>✍️ {author}</span>
+      {image && <span>🖼️ Con imagen</span>}
+    </div>
+  </header>
+
+  <!-- AD: Después del header -->
+  <div class="ad-space">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <article class="content">
+    <slot />
+  </article>
+
+  <!-- AD: Después del contenido -->
+  <div class="ad-space">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  {tags && tags.length > 0 && (
+    <footer class="tags">
+      {tags.map((tag) => (
+        <span class="tag">#{tag}</span>
+      ))}
+    </footer>
+  )}
+</body>
+</html>
